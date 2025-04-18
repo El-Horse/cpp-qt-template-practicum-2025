@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "qlineedit.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -14,6 +15,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    static void CheckValidity(QLineEdit* elem);
 
 private:
     QString GetFormatType1(int day, int month, int year);
@@ -25,12 +27,20 @@ private:
     void SetError(const QString& err_text);
 
 private slots:
+    void on_le_date_textChanged(const QString&);
     void on_le_day_textChanged(const QString&);
     void on_le_month_textChanged(const QString&);
     void on_le_year_textChanged(const QString&);
 
+
 private:
     Ui::MainWindow *ui;
     bool editing_now_ = false;
+    int day_ = 0;
+    int  month_ = 0;
+    int year_ = 0;
+
+    void PrintDate (const QString& d, const QString& m, const QString& y);
+    QString MonthToText(int m);
 };
 #endif // MAINWINDOW_H
