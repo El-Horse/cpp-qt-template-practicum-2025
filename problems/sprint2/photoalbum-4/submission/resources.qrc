@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/cats">
+        <file>images/cat1.jpg</file>
         <file>images/cat2.jpg</file>
         <file>images/cat3.jpg</file>
         <file>images/cat4.jpg</file>
@@ -24,9 +25,8 @@
         <file>images/cat23.jpg</file>
         <file>images/cat24.jpg</file>
         <file>images/cat25.jpg</file>
-        <file>images/cat1.jpg</file>
     </qresource>
-    <qresource prefix="/buttons">
+    <qresource prefix="/btns">
         <file>images/chevron_l.png</file>
         <file>images/chevron_r.png</file>
     </qresource>
