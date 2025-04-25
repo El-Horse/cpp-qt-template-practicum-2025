@@ -15,6 +15,8 @@
 
 using namespace std;
 
+bool is_record = false;
+int n = 0;
 
 class LineSet {
     template<class T>
@@ -249,6 +251,10 @@ void TestYourApp::ValidateSnowflake()
     {
         bool line_is_found = set.HasLine(line);
         QVERIFY2(line_is_found, "Как минимум один из ожидаемых лучей не был нарисован");
+        if (is_record){
+            ++n;
+            qDebug() << line_is_found << " test " << n;
+        }
     }
 }
 
@@ -305,7 +311,8 @@ void TestYourApp::TestDepth()
 }
 
 void TestYourApp::TestComplex()
-{
+{   is_record = true;
+
     spin_depth->setValue(3);
     sld_factor->setValue(sld_factor->maximum() / 3);
 
@@ -315,12 +322,14 @@ void TestYourApp::TestComplex()
 
     ValidateSnowflake();
 
+    n = 0;
     spin_depth->setValue(4);
     sld_factor->setValue(sld_factor->maximum() / 12);
     sld_rotation->setValue(99);
     sld_line->setValue(1);
     sld_size->setValue(54);
     ValidateSnowflake();
+    is_record = false;
 }
 
 

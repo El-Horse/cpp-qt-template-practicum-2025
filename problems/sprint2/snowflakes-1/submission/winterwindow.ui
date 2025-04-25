@@ -239,6 +239,37 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Множитель</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSlider" name="sld_factor">
+        <property name="maximum">
+         <number>1</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Глубина</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="spin_depth">
+        <property name="maximum">
+         <number>5</number>
+        </property>
+       </widget>
+      </item>
       <item alignment="Qt::AlignVCenter">
        <widget class="QLabel" name="label_5">
         <property name="text">
@@ -311,6 +342,38 @@
     <hint type="sourcelabel">
      <x>106</x>
      <y>567</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sld_factor</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>WinterWindow</receiver>
+   <slot>repaint()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>420</x>
+     <y>577</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spin_depth</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>WinterWindow</receiver>
+   <slot>repaint()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>536</x>
+     <y>577</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
