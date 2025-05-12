@@ -2,9 +2,8 @@
 
 #include "calculator.h"
 #include "enums.h"
-
+#include <string>
 #include <QMainWindow>
-
 // Реальзуйте класс главного окна.
 
 #pragma once
@@ -49,15 +48,6 @@ public:
     }
 
 
-
-
-
-    // void AddText (const QString& text);
-    // QString RemoveTrailingZeroes(const QString &text);
-    // QString NormalizeNumber(const QString &text);
-    // void SetOperation (Operation op);
-    // QString OpToString(Operation op) const;
-
 private slots:
 
     void on_btn_0_clicked();
@@ -70,7 +60,7 @@ private slots:
     void on_btn_7_clicked();
     void on_btn_8_clicked();
     void on_btn_9_clicked();
-    void on_btn_extra_clicked();
+    void on_tb_extra_clicked();
     void on_btn_invert_clicked();
     void on_btn_delite_clicked();
     void on_btn_plus_clicked();
@@ -84,9 +74,9 @@ private slots:
     void on_btn_mem_read_clicked();
     void on_btn_mem_save_clicked();
 
-
-
     void on_cmb_controller_currentIndexChanged(int index);
+
+
 
 private:
     Ui::MainWindow* ui;
@@ -94,10 +84,13 @@ private:
     QString input_number_;
     // Number active_number_ = 0;
     Operation current_operation_;
-    bool number_is_set_ = false;
+//    bool number_is_set_ = false;
 
     std::function<void(Operation key)> operation_cb_;
     std::function<void(int key)> digit_cb_;
     std::function<void(ControlKey key)> control_cb_;
     std::function<void(ControllerType controller)> controller_cb_;
+
+
+
 };

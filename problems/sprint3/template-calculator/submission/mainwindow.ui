@@ -41,7 +41,7 @@
        <string>l_formula</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
     </item>
@@ -58,7 +58,7 @@
        <string>l_result</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
     </item>
@@ -189,7 +189,7 @@
      </widget>
     </item>
     <item row="7" column="0">
-     <widget class="QPushButton" name="btn_extra">
+     <widget class="QPushButton" name="tb_extra">
       <property name="text">
        <string>extra</string>
       </property>

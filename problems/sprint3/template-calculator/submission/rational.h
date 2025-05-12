@@ -4,6 +4,7 @@
 #include <compare>
 #include <cstdint>
 #include <iostream>
+
 #include <numeric>
 #include <cstdlib>
 

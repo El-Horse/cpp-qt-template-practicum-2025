@@ -1,7 +1,8 @@
 #pragma once
 
 #include "rational.h"
-
+#include <iostream>
+#include <compare>
 template<class Number>
 Number IntegerPow(Number l_op, Number r_op) {
     Number res = 1;

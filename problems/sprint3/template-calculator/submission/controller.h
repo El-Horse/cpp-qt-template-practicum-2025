@@ -27,15 +27,15 @@ inline std::string ToString(std::uint8_t number) {
     return tmp_str.str();
 }
 
-template<>
-std::uint8_t FromString<std::uint8_t>(const std::string& number) {
-    std::istringstream tmp_str{number};
-    unsigned result{};
-    tmp_str >> result;
-    return static_cast<std::uint8_t>(result);
-}
+// template<>
+// std::uint8_t FromString<std::uint8_t>(const std::string& number) {
+//     std::istringstream tmp_str{number};
+//     unsigned result{};
+//     tmp_str >> result;
+//     return static_cast<std::uint8_t>(result);
+// }
 
-template<class Number>
+template<typename Number>
 class Controller
 {
 public:
