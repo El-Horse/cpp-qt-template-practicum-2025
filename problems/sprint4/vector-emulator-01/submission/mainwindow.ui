@@ -13,9 +13,93 @@
   <property name="windowTitle">
    <string>std::vector demo</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QListWidget" name="list_widget"/>
+    </item>
+    <item>
+     <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0,0,0,0" columnstretch="1,2,2,1">
+      <item row="2" column="0" colspan="2">
+       <widget class="QPushButton" name="pb_pop_back">
+        <property name="text">
+         <string>pop_back</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="lbl_3">
+        <property name="text">
+         <string>size():</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="2">
+       <widget class="QPushButton" name="pb_clear">
+        <property name="text">
+         <string>clear</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1" colspan="3">
+       <widget class="QLineEdit" name="txt_size"/>
+      </item>
+      <item row="5" column="0" colspan="2">
+       <widget class="QPushButton" name="pb_days">
+        <property name="text">
+         <string>= дни недели</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="2" colspan="2">
+       <widget class="QPushButton" name="pb_months">
+        <property name="text">
+         <string>= месяцы</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="4">
+       <widget class="QLineEdit" name="txt_elem_content"/>
+      </item>
+      <item row="1" column="0" colspan="4">
+       <widget class="QLabel" name="lbl_1">
+        <property name="text">
+         <string>Методы</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2" colspan="2">
+       <widget class="QPushButton" name="pb_push_back">
+        <property name="text">
+         <string>push_back</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0" colspan="3">
+       <widget class="QLabel" name="lbl_2">
+        <property name="text">
+         <string>Заготовки</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
  </widget>
  <resources/>
  <connections/>
 </ui>
-

@@ -2,7 +2,7 @@
 #define UTILS_H
 
 #include <QtTest>
-
+#include <iostream>
 
 template<typename T>
 void getChild(T*& dst, QObject* parent, const QString& object_name, const QString& type_name)

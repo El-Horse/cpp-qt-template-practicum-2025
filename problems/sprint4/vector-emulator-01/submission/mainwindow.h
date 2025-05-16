@@ -21,10 +21,21 @@ public:
 
 private slots:
 
+    void on_pb_pop_back_clicked();
+
+    void on_pb_push_back_clicked();
+
+    void on_pb_clear_clicked();
+
+    void on_pb_days_clicked();
+
+    void on_pb_months_clicked();
+
 private:
     void ApplyModel();
 
 private:
     Model vector_model_;
     Ui::MainWindow *ui;
+    void ShowVector(void);
 };
