@@ -33,10 +33,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::OnTimer()
 {
-    QString time = prac::QTime::currentTime().toString();
-    ui -> lbl_now -> setText(time);
+   // prac::QTime time =
+    ui -> lbl_now -> setText(prac::QTime::currentTime().toString());
     ProcessAlarm();
-    timer_.start(1000);
+    timer_.start(1000-prac::QTime::currentTime().msec());
 }
 
 void MainWindow::SelectSound()
@@ -52,7 +52,7 @@ void MainWindow::SelectSound()
 
 void MainWindow::on_pb_start_stop_clicked()
 {
-    if(!alarm_runing_){//кнопка "старт"
+    if(!alarm_runing_ || alarm_moment_ == prac::QDateTime{}){//кнопка "старт"
         auto now = prac::QDateTime::currentDateTime();
         auto alarm_time = QTime(ui -> sb_hour -> value(), ui -> sb_min -> value(), ui -> sb_sec -> value());
         alarm_moment_ = prac::QDateTime(now.date(), alarm_time);
@@ -60,6 +60,7 @@ void MainWindow::on_pb_start_stop_clicked()
             alarm_moment_ = prac::QDateTime(now.date().addDays(1),alarm_time);
         ui -> pb_start_stop -> setText("Стоп");
         alarm_runing_ = true;
+
     }
     else{ // Будильник работает, кнопка "стоп"
         alarm_moment_ = prac::QDateTime{};
@@ -67,6 +68,7 @@ void MainWindow::on_pb_start_stop_clicked()
         ui -> pb_start_stop -> setText("Старт");
         alarm_runing_ = false;
     }
+    ProcessAlarm();
 }
 
 void MainWindow::ProcessAlarm()

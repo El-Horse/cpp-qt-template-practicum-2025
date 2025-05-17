@@ -29,8 +29,22 @@ private slots:
 
     void on_pb_sett_4_clicked();
 
+    void on_pb_button_1_clicked();
+
+    void on_pb_button_2_clicked();
+
+    void on_pb_button_3_clicked();
+
+    void on_pb_button_4_clicked();
+
 private:
     Ui::MainWindow *ui;
     Setting* setting_ = new Setting();
     std::vector<QPushButton*> buttons_;
+    std::vector<std::function<void()>> button_action_ = {
+Relax,
+OpenCmd,
+Relax,
+OpenCmd
+    };
 };

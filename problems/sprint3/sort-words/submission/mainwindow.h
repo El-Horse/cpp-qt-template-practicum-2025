@@ -29,5 +29,11 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QString unsort_;
+    QString sorted_;
+    bool sort_a_to_z_ = true;
+    bool sort_case_ = true;
+
+    void SortText();
 };
 #endif // MAINWINDOW_H

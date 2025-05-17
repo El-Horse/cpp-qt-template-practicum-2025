@@ -13,6 +13,12 @@ std::string ToString(T number) {
     return tmp_str.str();
 }
 
+inline std::string ToString(std::uint8_t number) {
+    std::ostringstream tmp_str;
+    tmp_str << +number;
+    return tmp_str.str();
+}
+
 template<class T>
 T FromString(const std::string& number) {
     std::istringstream tmp_str{number};
@@ -20,20 +26,16 @@ T FromString(const std::string& number) {
     tmp_str >> result;
     return result;
 }
+// template<>
+// std::uint8_t FromString<std::uint8_t>(const std::string& number) {
+//     std::istringstream tmp_str{number};
+//     unsigned result{};
+//     tmp_str >> result;
+//     return static_cast<std::uint8_t>(result);
+// }
 
-inline std::string ToString(std::uint8_t number) {
-    std::ostringstream tmp_str;
-    tmp_str << +number;
-    return tmp_str.str();
-}
 
-template<>
-std::uint8_t FromString<std::uint8_t>(const std::string& number) {
-    std::istringstream tmp_str{number};
-    unsigned result{};
-    tmp_str >> result;
-    return static_cast<std::uint8_t>(result);
-}
+
 
 template<class Number>
 class Controller

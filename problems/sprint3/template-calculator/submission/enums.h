@@ -26,5 +26,5 @@ enum class ControllerType {
     SIZE_T,
     DOUBLE,
     FLOAT,
-    RATIONAL,
+    RATIONAL
 };

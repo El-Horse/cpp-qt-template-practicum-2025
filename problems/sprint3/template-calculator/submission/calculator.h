@@ -4,79 +4,92 @@
 #include <string>
 #include <optional>
 #include <cmath>
-#include "enums.h"
 #include "rational.h"
 #include "pow.h"
 
 #include <QString>
 
+#define NoError std::nullopt;
+
 using Error = std::string;
 
 // Реализация шаблонного калькулятора.
-template <typename T>
-T power (const T num1,const T num2){
-
-    return IntegerPow(num1, num2);
-};
-
-Rational power (const Rational num1,const Rational num2){
-
-    return Pow (num1, num2);
-};
 
 template <typename Number>
 class Calculator
 {
 public:
-    void Set(double num){
+    void Set(Number num){
         number_ = num;
     }
     Number GetNumber() const{return number_;}
-    void Save(Number n){memory_ = n;}
-    Number Load(){number_ = memory_;}
+    void Save(){memory_.value() = number_;}
+    void Load(){number_ = memory_.value();}
     bool GetHasMem(){return memory_.has_value();}
 
-    Number Add (Number n){return number_ + n;}
-    Number Sub (Number n){return number_ - n;}
-    Number Mul (Number n){return number_ * n;}
-    Number Div(Number n){
-        error_txt_ = CheckDivision(n);
-        if (!error_txt_.has_value())
-            return 0;
-        return number_ / n;
-    }
-    Number Pow (Number num){
-        if(is_zero(number_,num)){ // 0^0
-            error_txt_ = "Zero power to zero";
-            return 0;
-            }
-        else if constexpr (std::is_same_v<Number, Rational>){ // тут про знаменатель
-            std::optional<Rational> den = num.denominator_;
-            if (den != 1){
-                error_txt_ = "Fractional power is not supported";
-                return 0;
-            }
-        }
-            else if constexpr (std::is_integral_v<Number>){
-                if (num <0){
-                    error_txt_ = "Integer negative power";
-                    return 0;
-                }
-        }
-        return power(number_,num);
+    std::optional<Error> Add (Number n){number_ += n;return NoError;}
+    std::optional<Error> Sub (Number n){number_ -= n;return NoError;}
+    std::optional<Error> Mul (Number n){number_ *= n;return NoError;}
+    std::optional<Error> Div(Number n){
+        std::optional<Error>error_txt = CheckDivision(n);
+        if (error_txt.has_value())
+            return error_txt;
+        number_ /= n;
+        return NoError;
     }
 
+    std::optional<Error> Pow (Number num){
+        if(number_ == 0 && num == 0){ // 0^0
+            return "Zero power to zero";
+        }
+        else if constexpr (std::is_same_v<Number, Rational>){ // тут про дробь
+            if (num.GetDenominator() != 1){
+                return "Fractional power is not supported";
+            }
+            number_ = ::Pow (number_, num);
+        }
+        else if constexpr (std::is_integral_v<Number>){
+            if (num <0){
+                return "Integer negative power";
+            }
+            number_ = IntegerPow(number_, num);
+        }
+        else if constexpr (std::is_same_v<Number,double> || std::is_same_v<Number,float>){
+            number_ = std::pow(number_,num);
+        }
+        return NoError;
+    }
+
+
+    // bool is_zero = [](const Number a,const Number b){
+    //     return a == 0? a == b : false;
+    // };
+
+private:
+    Number result_;
+    std::optional<Number> memory_;
+    Number number_;
+    // std::optional<Error> error_txt_ = std::nullopt;
+    std::optional<Error> CheckDivision(Number num){
+        if constexpr (std::is_integral_v<Number> || std::is_same_v<Number, Rational>){
+            if (num == 0 ){return "Division by zero";}
+        }
+        return std::nullopt;
+    }
+};
 
 
 
 
 
 
-    // std::optional<Error> Calculate
-    //     ( std::optional<Operation> action, const Number num, Number& result) const{
-    //     // Number result;
-    //     std::optional <Error> error_txt = std::nullopt;
-    //     if (action == Operation::ADDITION){
+
+
+// std::optional<Error> Calculate
+//     ( std::optional<Operation> action, const Number num, Number& result) const{
+//     // Number result;
+//     std::optional <Error> error_txt = std::nullopt;
+//     if (action == Operation::ADDITION){
 
     //         result = number_ + num;
     //     }
@@ -107,28 +120,5 @@ public:
     //         result = power(number_,num);
     //     }
 
-    //     return error_txt;
-    // }
-
-
-    bool is_zero = [](const Number a,const Number b){
-        return a == 0? a == b : false;
-    };
-
-private:
-    Number result_;
-    std::optional<Number> memory_;
-    Number number_;
-    std::optional<Error> error_txt_ = std::nullopt;
-    std::optional<Error> CheckDivision(Number num){
-        if constexpr (num == 0 &&
-                      (std::is_integral_v<Number>
-                        || std::is_same_v<Number, Rational>)){
-            return "Division by zero";
-       }
-    }
-};
-
-
-
-
+//     return error_txt;
+// }

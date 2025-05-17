@@ -8,6 +8,7 @@ WinterWindow::WinterWindow(QWidget *parent)
     , ui(new Ui::WinterWindow)
 {
     ui->setupUi(this);
+    prac::QPainter painter_(this);
 }
 
 WinterWindow::~WinterWindow()
@@ -31,6 +32,8 @@ void WinterWindow::paintEvent(QPaintEvent *event) {
     };
 
     // Создайте снежинку (объект класса SnowFlake) и нарисуйте её методом Draw.
+    SnowFlake::SnowFlake flake;
+    flake.Draw(painter);
 
     QRect rect(10, 10, width() - 20, height() - 20);
 
