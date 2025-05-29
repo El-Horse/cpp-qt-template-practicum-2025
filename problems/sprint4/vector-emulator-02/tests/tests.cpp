@@ -198,6 +198,7 @@ void TestYourApp::checkExpectedVector() const {
     for (size_t i = 0; i < vec.size(); ++i) {
         const QString expected_string = QString("%1: %2").arg(i).arg(vec.at(i));
         const auto& actual_string = actual_vector.at(i);
+        qDebug()<<expected_string <<"__" << actual_string;
         QVERIFY2(expected_string == actual_string, "Строка вектора не совпадает с ожидаемой");
     }
 }
@@ -205,6 +206,7 @@ void TestYourApp::checkExpectedVector() const {
 void TestYourApp::checkIndex() const {
     const auto actual = getIndex();
     const auto expected = it - vec.begin();
+    qDebug() << "index "<< actual<< "__" << expected;
     QVERIFY2(actual == expected, "Индекс выбранного элемента не совпадает с ожидаемым");
 }
 
@@ -237,6 +239,7 @@ void TestYourApp::checkContent() const {
         return;
     };
     const auto& expected_text = *it;
+    qDebug() << actual_text<<"_" << expected_text;
     QVERIFY2(actual_text == expected_text, "Текст в txt_elem_content не совпадает с ожидаемым");
 }
 
