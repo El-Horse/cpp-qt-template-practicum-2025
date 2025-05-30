@@ -18,23 +18,22 @@ SOURCES += \
     utility/painter.cpp
 
 HEADERS += \
+    context.h \
     character.h \
     characters.h \
-    context.h \
-    controller.h \
     field.h \
     field_elements.h \
     game.h \
     mainwindow.h \
     object.h \
     objects.h \
-    player.h \
-    utility/assets.h \
-    utility/animation.h \
+    controller.h\
     utility/painter.h \
+    player.h \
     utility/geometry.h \
     utility/random.h \
     utility/timer.h \
+    utility/sprites.h \
     utility/utility.h
 
 FORMS += \
