@@ -1,10 +1,14 @@
 #pragma once
+
+
 #include "character.h"
-#include "game.h"
+#include "qevent.h"
 #include "utility/utility.h"
+
 
 class Wall{
 public:
+    Wall();
 
     virtual bool CanPass(const Character& character, Direction dir) const = 0;
     virtual void Interact(Character&, Direction) {}
@@ -37,7 +41,7 @@ public:
         level_(level),
         w_(w),
         h_(h),
-        floor_ {w,h}
+        cells_ {w+1,h+1}
     {};
 
     int GetLevel() const{
@@ -45,19 +49,77 @@ public:
     }
 
     void SetTile(Coordinate2D where, Tile* tile){
-        tile->x_ = where.x_pos;
-        tile->y_ = where.y_pos;
+        tile = cells_.Get(where).floor;
     } // тут какая-то шляпа
 
     void SetWall(Coordinate2D where, Direction dir, Wall* wall){
-// все. я тут закончился
+        wall = GetWallPtr(where,dir);
     };
 
-    Wall*& GetWallPtr(Coordinate2D where, Direction dir);
+    Wall* GetWall(Coordinate2D where, Direction dir){
+        return GetWallPtr(where,dir);
+    }
+
+    Wall*& GetWallPtr(Coordinate2D where, Direction dir){
+        switch (dir) {
+        case Direction::kUp:
+            return cells_.Get(where).top_wall;
+            break;
+        case Direction::kDown:
+            ++where.y_pos;
+            return cells_.Get(where).top_wall;
+            break;
+        case Direction::kLeft:
+            return cells_.Get(where).left_wall;
+            break;
+        case Direction::kRight:
+            ++where.x_pos;
+            return cells_.Get(where).left_wall;
+        default:
+            break;
+        }
+// тут я не понимаю, что надо сделать// вроде так
+    }
 
 private:
     int level_;
     int w_;
     int h_;
-    Array2D<Cell> floor_;
+    Array2D<Cell> cells_;
+};
+
+class Field{
+public:
+    Field(int w, int h):
+            w_(w), h_(h)
+        {};
+
+    int GetWidth() const{
+        return w_;
+    }
+    int GetHeight() const{
+        return h_;
+    }
+
+    Size GetRect() const {
+        return {GetWidth(), GetHeight()};
+    }
+
+    void AddFloor(int level){
+        floor_[level];
+    }
+
+    Floor& GetFloor(int floor){
+        return floor_[floor];
+
+    }
+
+    const Floor& GetFloor(int floor) const{
+        auto iter = floor_.find(floor);
+        return iter->second;
+    }
+private:
+    int w_ = 0;
+    int h_ = 0;
+    std::map <int,Floor> floor_;
 };

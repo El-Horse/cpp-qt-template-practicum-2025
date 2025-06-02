@@ -25,7 +25,7 @@ public:
         return coordinate_;
     };
 
-    virtual void Interact(Character& character, Direction dir){
+    virtual void Interact(Character& , Direction ){
 
     };
     virtual bool CanCover(const Character& character, Direction dir) const{
